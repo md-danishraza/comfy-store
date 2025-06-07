@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quattrocento:wght@400;700&display=swap');
+
+
+
+@plugin "daisyui" {
+  themes: dark --default, light --prefersdark, dracula;
+}
+
+@theme{
+  --main-font:"Oswald", sans-serif;
+  --second-font:"Quattrocento", serif;
+}
