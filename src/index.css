@@ -2,15 +2,23 @@
 @plugin "daisyui";
 
 
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quattrocento:wght@400;700&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Quattrocento:wght@400;700&display=swap'); */
 
 
 
 @plugin "daisyui" {
-  themes: dark --default, light --prefersdark, dracula;
+  /* themes: light --default, dark --prefersdark; */
+  themes: light --default;
 }
 
 @theme{
   --main-font:"Oswald", sans-serif;
   --second-font:"Quattrocento", serif;
 }
+
+@layer components{
+  .align-element{
+    @apply mx-auto px-8 max-w-6xl;
+  }
+}
+
