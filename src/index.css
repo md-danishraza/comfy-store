@@ -22,3 +22,6 @@
   }
 }
 
+.active{
+  @apply bg-gray-500 text-blue-100
+}

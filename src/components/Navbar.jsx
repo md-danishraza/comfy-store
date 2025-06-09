@@ -23,6 +23,10 @@ function Navbar() {
 
   // Save theme to local storage whenever it changes
   useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      theme ? "dark" : "light"
+    );
     localStorage.setItem("theme", theme);
   }, [theme]);
   return (
@@ -64,8 +68,8 @@ function Navbar() {
               onClick={handleTheme}
             />
 
-            <BsMoonFill className="swap-on" />
-            <BsSunFill className="swap-off" />
+            <BsMoonFill className="swap-off" />
+            <BsSunFill className="swap-on" />
           </label>
           {/* CART LINK*/}
           <NavLink to="/cart" className="btn btn-ghost btn-circle btn-md ml-4">

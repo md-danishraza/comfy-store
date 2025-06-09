@@ -7,14 +7,14 @@ import { Navbar } from "../components";
 
 function HomeLayout() {
   return (
-    <>
+    <section className="flex flex-col min-h-screen">
       <Header />
       <Navbar />
       <main className="align-element py-20">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </section>
   );
 }
 
