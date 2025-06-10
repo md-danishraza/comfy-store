@@ -8,6 +8,9 @@ import Hero from "./Hero";
 import ErrorElement from "./ErrorElement";
 import FeaturedProducts from "./FeaturedProducts";
 import SectionTitle from "./SectionTitle";
+import Filters from "./Filters";
+import ProductsContainer from "./ProductsContainer";
+import PaginationContainer from "./PaginationContainer";
 
 export {
   Footer,
@@ -20,4 +23,7 @@ export {
   ErrorElement,
   FeaturedProducts,
   SectionTitle,
+  Filters,
+  PaginationContainer,
+  ProductsContainer,
 };
