@@ -11,6 +11,7 @@ import SectionTitle from "./SectionTitle";
 import Filters from "./Filters";
 import ProductsContainer from "./ProductsContainer";
 import PaginationContainer from "./PaginationContainer";
+import Loading from "./Loading";
 
 export {
   Footer,
@@ -26,4 +27,5 @@ export {
   Filters,
   PaginationContainer,
   ProductsContainer,
+  Loading,
 };
