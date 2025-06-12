@@ -12,6 +12,9 @@ import Filters from "./Filters";
 import ProductsContainer from "./ProductsContainer";
 import PaginationContainer from "./PaginationContainer";
 import Loading from "./Loading";
+import CartItem from "./CartItem";
+import CartItemsList from "./CartItemsList";
+import CartTotals from "./CartTotals";
 
 export {
   Footer,
@@ -28,4 +31,7 @@ export {
   PaginationContainer,
   ProductsContainer,
   Loading,
+  CartItem,
+  CartItemsList,
+  CartTotals,
 };
