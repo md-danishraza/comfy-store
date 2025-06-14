@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 
 function Cart() {
   // temp
-  const user = null;
+  const user = useSelector((state) => state.userState.user);
 
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   if (numItemsInCart === 0) {
-    return <SectionTitle text="Your cart is empty" />;
+    return <SectionTitle text="Your cart is empty" styles="text-error" />;
   }
 
   return (

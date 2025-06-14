@@ -58,7 +58,7 @@ const cartSlice = createSlice({
       //   calculate totals
       cartSlice.caseReducers.calculateTotals(state);
       // toast message
-      toast.success("Item removed from Cart!");
+      toast.warning("Item removed from Cart!");
     },
     editItem: (state, action) => {
       const { cartID, amount } = action.payload;

@@ -4,32 +4,29 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
 import NavLinks from "./NavLinks";
 import { useSelector } from "react-redux";
-
+import { useDispatch } from "react-redux";
+import { toggleTheme } from "../features/user/userSlice";
 function Navbar() {
-  const getThemeFromStorage = () => {
-    return localStorage.getItem("theme") === "true";
-  };
-
-  const [theme, setTheme] = useState(getThemeFromStorage);
+  const isDark = useSelector((state) => state.userState.isDark);
+  const dispatch = useDispatch();
 
   const handleTheme = () => {
-    const newTheme = !theme;
-    setTheme(newTheme);
-
-    document.documentElement.setAttribute(
-      "data-theme",
-      newTheme ? "dark" : "light"
-    ); // Use new value
+    dispatch(toggleTheme());
   };
 
-  // Save theme to local storage whenever it changes
   useEffect(() => {
+    const storedTheme = localStorage.getItem("theme") === "true";
+
+    // Ensure Redux state matches localStorage
+    if (storedTheme !== isDark) {
+      dispatch(toggleTheme());
+    }
+
     document.documentElement.setAttribute(
       "data-theme",
-      theme ? "dark" : "light"
+      storedTheme ? "dark" : "light"
     );
-    localStorage.setItem("theme", theme);
-  }, [theme]);
+  }, [dispatch, isDark]);
 
   const numItemsInCart = useSelector((state) => state.cartState.numItemsInCart);
   return (

@@ -1,6 +1,32 @@
 import React from "react";
 import { FormInput, Submitbtn } from "../components";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import { customFetch } from "../utils";
+import { toast } from "react-toastify";
+import { loginUser } from "../features/user/userSlice";
+import { useDispatch } from "react-redux";
+
+const url = "/auth/local";
+
+export const action = async ({ request }, store) => {
+  // console.log(store);
+  const data = Object.fromEntries(await request.formData());
+
+  try {
+    const response = await customFetch.post(url, data);
+    store.dispatch(loginUser({ response: response.data }));
+    toast.success("Logged In Successfully!");
+    return redirect("/");
+  } catch (error) {
+    const errorMessage =
+      error?.response?.data?.error?.message ||
+      "please double check your credentials";
+
+    toast.error(errorMessage);
+  }
+
+  return null;
+};
 
 function Login() {
   return (
@@ -13,14 +39,14 @@ function Login() {
         <FormInput
           type="email"
           label="Email"
-          name="email"
-          defaultValue="test@test.com"
+          name="identifier"
+          defaultValue="tim@gmail.com"
         />
         <FormInput
           type="password"
           label="Password"
           name="password"
-          defaultValue="832283"
+          defaultValue="tim@gmail.com"
         />
         <div className="mt-4">
           <Submitbtn text="login" />
