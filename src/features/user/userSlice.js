@@ -40,7 +40,7 @@ const userSlice = createSlice({
 
       document.documentElement.setAttribute(
         "data-theme",
-        state.isDark ? "dark" : "light"
+        state.isDark ? "dark" : "fantasy"
       );
 
       localStorage.setItem("theme", state.isDark);

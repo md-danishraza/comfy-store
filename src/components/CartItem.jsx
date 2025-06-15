@@ -2,9 +2,13 @@ import React from "react";
 import { formatPrice, generateAmountOptions } from "../utils";
 import { removeItem, editItem } from "../features/cart/cartSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 function CartItem({ cartItem }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  // console.log(cartItem);
 
   const removeItemFromTheCart = () => {
     dispatch(removeItem({ cartID }));
@@ -13,8 +17,20 @@ function CartItem({ cartItem }) {
     dispatch(editItem({ cartID, amount: parseInt(e.target.value) }));
   };
 
-  const { cartID, title, price, image, amount, company, productColor } =
-    cartItem;
+  const {
+    cartID,
+    title,
+    price,
+    image,
+    amount,
+    company,
+    productColor,
+    productID,
+  } = cartItem;
+
+  const goToProduct = () => {
+    navigate(`/products/${productID}`);
+  };
   return (
     <article
       key={cartID}
@@ -24,7 +40,9 @@ function CartItem({ cartItem }) {
       <img
         src={image}
         alt={title}
-        className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover"
+        className="h-24 w-24 rounded-lg sm:h-32 sm:w-32 object-cover cursor-pointer hover:scale-105 transition-transform duration-200 "
+        onClick={goToProduct}
+        title="go to product"
       />
       {/* INFO */}
       <div className="sm:ml-16 sm:w-48">

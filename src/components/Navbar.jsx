@@ -24,7 +24,7 @@ function Navbar() {
 
     document.documentElement.setAttribute(
       "data-theme",
-      storedTheme ? "dark" : "light"
+      storedTheme ? "dark" : "fantasy"
     );
   }, [dispatch, isDark]);
 

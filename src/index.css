@@ -7,8 +7,7 @@
 
 
 @plugin "daisyui" {
-  /* themes: light --default, dark --prefersdark; */
-  themes: light --default;
+  themes: fantasy --default, dark --prefersdark;
 }
 
 @theme{

@@ -15,6 +15,7 @@ import Loading from "./Loading";
 import CartItem from "./CartItem";
 import CartItemsList from "./CartItemsList";
 import CartTotals from "./CartTotals";
+import CheckoutForm from "./CheckoutForm";
 
 export {
   Footer,
@@ -34,4 +35,5 @@ export {
   CartItem,
   CartItemsList,
   CartTotals,
+  CheckoutForm,
 };
