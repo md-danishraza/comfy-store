@@ -8,10 +8,20 @@ import { generateAmountOptions } from "../utils";
 import { useDispatch } from "react-redux";
 import { addItem } from "../features/cart/cartSlice";
 
-export const loader = async ({ params }) => {
-  const response = await customFetch(`/products/${params.id}`);
-  return { product: response.data.data, id: params.id };
+const singleProductQuery = (id) => {
+  return {
+    queryKey: ["singleProduct", id],
+    queryFn: () => customFetch(`/products/${id}`),
+  };
 };
+export const loader =
+  (queryclient) =>
+  async ({ params }) => {
+    const response = await queryclient.ensureQueryData(
+      singleProductQuery(params.id)
+    );
+    return { product: response.data.data, id: params.id };
+  };
 
 function SingleProduct() {
   const { product, id } = useLoaderData();

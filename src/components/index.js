@@ -16,6 +16,8 @@ import CartItem from "./CartItem";
 import CartItemsList from "./CartItemsList";
 import CartTotals from "./CartTotals";
 import CheckoutForm from "./CheckoutForm";
+import OrdersList from "./OrdersList";
+import ComplexPagination from "./ComplexPagination";
 
 export {
   Footer,
@@ -36,4 +38,6 @@ export {
   CartItemsList,
   CartTotals,
   CheckoutForm,
+  OrdersList,
+  ComplexPagination,
 };

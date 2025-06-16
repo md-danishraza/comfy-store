@@ -46,7 +46,7 @@ export const action =
 
       toast.error(errorMessage);
 
-      if (error?.response?.status == 401) {
+      if (error?.response?.status == 401 || 403) {
         return redirect("/login");
       }
     }

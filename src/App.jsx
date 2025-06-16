@@ -14,8 +14,8 @@ import {
 
 // import store
 import { store } from "./store";
-
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 // error element
 import { ErrorElement } from "./components";
@@ -25,10 +25,19 @@ import { loader as landingLoader } from "./pages/Landing";
 import { loader as productLoader } from "./pages/SingleProduct";
 import { loader as productsLoader } from "./pages/Products";
 import { loader as checkoutLoader } from "./pages/Checkout";
+import { loader as ordersLoader } from "./pages/Orders";
 // actions
 import { action as registerAction } from "./pages/Register";
 import { action as loginAction } from "./pages/Login";
 import { action as checkoutAction } from "./components/CheckoutForm";
+
+const queryclient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
 
 const router = createBrowserRouter([
   {
@@ -40,17 +49,17 @@ const router = createBrowserRouter([
         index: true,
         element: <Landing />,
         errorElement: <ErrorElement />,
-        loader: landingLoader,
+        loader: landingLoader(queryclient),
       },
       {
         path: "products",
         element: <Products />,
-        loader: productsLoader,
+        loader: productsLoader(queryclient),
       },
       {
         path: "products/:id",
         element: <SingleProduct />,
-        loader: productLoader,
+        loader: productLoader(queryclient),
       },
       {
         path: "cart",
@@ -64,11 +73,12 @@ const router = createBrowserRouter([
         path: "checkout",
         element: <Checkout />,
         loader: checkoutLoader(store),
-        action: checkoutAction(store),
+        action: checkoutAction(store, queryclient),
       },
       {
         path: "orders",
         element: <Orders />,
+        loader: ordersLoader(store, queryclient),
       },
     ],
   },
@@ -87,7 +97,13 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <QueryClientProvider client={queryclient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </>
+  );
 }
 
 export default App;
