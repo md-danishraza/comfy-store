@@ -6,6 +6,7 @@ import NavLinks from "./NavLinks";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { toggleTheme } from "../features/user/userSlice";
+import logo from "../assets/COMFY.svg";
 function Navbar() {
   const isDark = useSelector((state) => state.userState.isDark);
   const dispatch = useDispatch();
@@ -34,11 +35,17 @@ function Navbar() {
       <div className="navbar align-element">
         <div className="navbar-start">
           {/* Title */}
-          <NavLink
+          {/* <NavLink
             to="/"
             className="hidden lg:flex btn btn-primary rounded-full p-4 text-2xl items-center  "
           >
             C
+          </NavLink> */}
+          <NavLink
+            to="/"
+            className="hidden lg:flex items-center w-24 relative "
+          >
+            <img src={logo} alt="" className="absolute " />
           </NavLink>
           {/* DROPDOWN */}
           <div className="dropdown">

@@ -4,8 +4,21 @@ import { toast } from "react-toastify";
 import { customFetch } from "../utils";
 import { ComplexPagination, OrdersList, SectionTitle } from "../components";
 
+const ordersQuery = (params, user) => {
+  return {
+    queryKey: ["order", user.username, params.page ? parseInt(params.page) : 1],
+    queryFn: () =>
+      customFetch.get("/orders", {
+        params,
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }),
+  };
+};
+
 export const loader =
-  (store) =>
+  (store, queryclient) =>
   async ({ request }) => {
     const user = store.getState().userState.user;
     if (!user) {
@@ -19,12 +32,9 @@ export const loader =
 
     // getting all orders (if user exist jwt)
     try {
-      const response = await customFetch.get("/orders", {
-        params,
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await queryclient.ensureQueryData(
+        ordersQuery(params, user)
+      );
       // console.log(response);
       return { orders: response.data.data, meta: response.data.meta };
     } catch (error) {

@@ -19,7 +19,7 @@ function Checkout() {
   const cartTotal = useSelector((state) => state.cartState.cartTotal);
 
   if (!cartTotal) {
-    return <SectionTitle text="Your Cart is Empty!" />;
+    return <SectionTitle text="Your Cart is Empty!" styles="text-error" />;
   }
   return (
     <>
